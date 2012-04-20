@@ -28,6 +28,7 @@
 #include "ofxUIWidget.h"
 #include <vector>
 #include <map>
+#include "ofxUIRadioImage.h"
 
 class ofxUICanvas : public ofxUIWidget
 {    
@@ -1096,6 +1097,23 @@ public:
 			pushbackWidget(label); 			
             
             widgetsWithState.push_back(widget);                         
+		}		
+		else if(widget->getKind() == OFX_UI_WIDGET_RADIOIMAGE)
+		{
+			ofxUIRadioImage *radio = (ofxUIRadioImage *) widget;
+			ofxUILabel *label = (ofxUILabel *) radio->getLabel();			
+			setLabelFont(label); 
+			pushbackWidget(label); 				
+			
+			vector<ofxUIImageToggle *> toggles = radio->getToggles(); 
+			
+			for(int i = 0; i < toggles.size(); i++)
+			{
+				ofxUIImageToggle *t = toggles[i]; 
+				pushbackWidget(t);
+                
+                widgetsWithState.push_back(t);                             
+			}
 		}
 		else if(widget->getKind() == OFX_UI_WIDGET_RADIO)
 		{
