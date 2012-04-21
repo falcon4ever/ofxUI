@@ -84,7 +84,8 @@ enum ofxWidgetType
     OFX_UI_WIDGET_CIRCLESLIDER = 27, 
     OFX_UI_WIDGET_IMAGESAMPLER = 28,
 	OFX_UI_WIDGET_SCROLLABLECANVAS = 29,	
-	OFX_UI_WIDGET_RADIOIMAGE = 30
+	OFX_UI_WIDGET_RADIOIMAGE = 30,
+	OFX_UI_WIDGET_RADIOLABEL = 31
 };
 
 enum ofxWidgetOrientation
@@ -176,6 +177,8 @@ enum ofxWidgetColorType
 #include "ofxUICanvas.h"
 #include "ofxUIScrollableCanvas.h"
 #include "ofxUIRadioImage.h"
+#include "ofxUIRadioLabel.h"
+
 
 
 #endif
