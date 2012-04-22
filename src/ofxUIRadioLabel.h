@@ -125,8 +125,6 @@ public:
 	
 	void setParent(ofxUIWidget *_parent)
 	{
-		cout << "setting parent" << endl;
-
 		parent = _parent; 
 		
 		float tWidth = label->getPaddingRect()->width; 
@@ -146,8 +144,6 @@ public:
 				t->getRect()->x = xt;
 				t->getRect()->y = yt;
 				xt+=t->getPaddingRect()->width;
-
-				cout << "wohoo hooo" << endl;
 
 				if(i == 0){
 					tHeight = label->getPaddingRect()->height+t->getPaddingRect()->height;
