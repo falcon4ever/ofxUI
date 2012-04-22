@@ -125,6 +125,8 @@ public:
 	
 	void setParent(ofxUIWidget *_parent)
 	{
+		cout << "setting parent" << endl;
+
 		parent = _parent; 
 		
 		float tWidth = label->getPaddingRect()->width; 
@@ -138,14 +140,24 @@ public:
 			ofxUILabelToggle *t = toggles[i];
 			t->setParent(this); 
 			t->getRect()->setParent(this->getRect()); 
-			
-			
+
 			if(orientation == OFX_UI_ORIENTATION_HORIZONTAL)
 			{
-				t->getRect()->x = xt; 
-				t->getRect()->y = yt; 				
-				xt+=t->getPaddingRect()->width; 
-				tHeight = label->getPaddingRect()->height+t->getPaddingRect()->height; 								
+				t->getRect()->x = xt;
+				t->getRect()->y = yt;
+				xt+=t->getPaddingRect()->width;
+
+				cout << "wohoo hooo" << endl;
+
+				if(i == 0){
+					tHeight = label->getPaddingRect()->height+t->getPaddingRect()->height;
+				}
+				else if(i == 5){
+					xt = 0;
+					yt += t->getPaddingRect()->height;
+					tHeight *= 2;
+					tHeight -= 13;
+				}
 			}			
 			else 
 			{
@@ -167,9 +179,13 @@ public:
                 tWidth = xt; 
             }
         }
+
 		tHeight += padding; 
 		paddedRect->width = tWidth; 	
-		paddedRect->height = tHeight; 			
+		paddedRect->height = tHeight;
+
+		/*if(toggles.size() > 6)
+			paddedRect->height *= 2;*/
 	}	
 		
 	vector<ofxUILabelToggle *> getToggles()
