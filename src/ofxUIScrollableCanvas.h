@@ -73,7 +73,7 @@ public:
         nearLeft = false;
         
         hitWidget = false; 
-        stickyDistance = 100;  
+        stickyDistance = 50;
         hit = false; 
 #ifdef TARGET_OPENGLES
         touchId = -1; 
