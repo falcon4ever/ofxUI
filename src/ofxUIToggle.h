@@ -69,15 +69,20 @@ public:
     
     virtual void mouseDragged(int x, int y, int button) 
     {
-        if(hit)
-        {
-            state = OFX_UI_STATE_DOWN;         
-        }    
-        else
-        {
-            state = OFX_UI_STATE_NORMAL;        
-        }
-        stateChange();     
+    	if(hit)
+		{
+			if(rect->inside(x, y))
+			{
+				state = OFX_UI_STATE_DOWN;
+			}
+			else
+			{
+				hit = false;
+				state = OFX_UI_STATE_NORMAL;
+				setValue(false);
+			}
+			stateChange();
+		}
     }
     
     virtual void mousePressed(int x, int y, int button) 

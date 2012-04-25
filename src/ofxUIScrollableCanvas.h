@@ -265,9 +265,15 @@ public:
     {	
         for(int i = 0; i < widgets.size(); i++)
         {
-            if(widgets[i]->isVisible())	widgets[i]->mouseDragged(x, y, button); 
+    		//disable the widget from being selected if scrolling
+        	if(vel.x > .9 || vel.y > .9){
+        		if(widgets[i]->isVisible())	widgets[i]->mouseDragged(-100, -100, button);
+        	}
+        	else{
+        		if(widgets[i]->isVisible())	widgets[i]->mouseDragged(x, y, button);
+        	}
         }
-        
+
         if(hit)
         {
             if(!hitWidget)

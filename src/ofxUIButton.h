@@ -92,19 +92,18 @@ public:
         {
             if(rect->inside(x, y))
             {                
-                state = OFX_UI_STATE_DOWN;         
+                state = OFX_UI_STATE_DOWN;
             }    
             else                
             {
                 hit = false;
                 state = OFX_UI_STATE_NORMAL;        
                 setValue(false); 
-                triggerEvent(this);
             }
             stateChange();     
         }
     }
-    
+
     virtual void mousePressed(int x, int y, int button) 
     {
         if(rect->inside(x, y))
