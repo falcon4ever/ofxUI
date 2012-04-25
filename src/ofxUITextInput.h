@@ -41,7 +41,7 @@ public:
         rect = new ofxUIRectangle(0,0,w,0); 
         init(w, _name, _textstring, _size); 
     }    
-    
+
     void init(float w, string _name, string _textstring, int _size)
     {
 		name = _name; 		
@@ -102,8 +102,8 @@ public:
                 spaceOffset = rect->width-padding*4.0; 
             }
 			float x = label->getRect()->getX()+spaceOffset;			
-			float y = label->getRect()->getY()-padding; 
-			float t = label->getRect()->height+padding*2.0; 			
+			float y = label->getRect()->getY()-padding;
+			float t = label->getRect()->height+padding*2.0;
 			ofRect(x, y, cursorWidth, t); 
 		}
 		
@@ -112,7 +112,7 @@ public:
 			ofFill(); 
             ofSetColor(color_fill); 
 			label->drawString(rect->getX()+defaultX, rect->getY()+defaultY, defaultstring); 
-		}        
+		}
     }
 	
     void mouseMoved(int x, int y ) 
@@ -186,7 +186,7 @@ public:
 	
     void keyPressed(int key) 
     {
-		if(clicked)            
+  		if(clicked)
 		{
             switch (key) 
 			{
@@ -247,6 +247,7 @@ public:
 					break;
 			}
 		}
+
     }
     
     void unClick()
@@ -322,7 +323,7 @@ public:
 	
 	void setTextString(string s)	
 	{
-		textstring = ""; 
+		textstring = "";
 		string temp = ""; 
 		
 		for(int i = 0; i < s.length(); i++)
@@ -334,8 +335,13 @@ public:
 			{
 				textstring+=s.at(i); 
 				label->setLabel(textstring); 
-			}				
-		}				
+			}
+		}
+
+		if(s.length() == 0) {
+			label->setLabel("");
+		}
+
         displaystring = textstring; 
 	}
 	
