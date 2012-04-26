@@ -34,22 +34,23 @@
 class ofxUIRadioLabel : public ofxUIWidgetWithLabel
 {
 public:
-    ofxUIRadioLabel(float x, float y, float w, float h, string _name, vector<string> names, int _orientation)
+    ofxUIRadioLabel(float x, float y, float w, float h, string _name, vector<string> names, int _orientation, int _size)
     {
         rect = new ofxUIRectangle(x,y,w, h);
-        init(w, h, _name, names, _orientation);
+        init(w, h, _name, names, _orientation, _size);
     }
 
-    ofxUIRadioLabel(float w, float h, string _name, vector<string> names, int _orientation)
+    ofxUIRadioLabel(float w, float h, string _name, vector<string> names, int _orientation, int _size)
     {
         rect = new ofxUIRectangle(0,0,w,h); 
-        init(w, h, _name, names, _orientation);
+        init(w, h, _name, names, _orientation, _size);
     }    
     
-    void init(float w, float h, string _name, vector<string> names, int _orientation)
+    void init(float w, float h, string _name, vector<string> names, int _orientation, int _size)
     {
 		name = _name; 		
 		kind = OFX_UI_WIDGET_RADIOLABEL;
+		size = _size;
         
         draw_back = false; 
         orientation = _orientation; 
@@ -64,7 +65,7 @@ public:
 		for(int i = 0; i < names.size(); i++)
 		{
 			string tname = names[i]; 			
-			ofxUILabelToggle *toggle  = new ofxUILabelToggle(w, false, tname, OFX_UI_FONT_MEDIUM);
+			ofxUILabelToggle *toggle  = new ofxUILabelToggle(w, false, tname, size);
 			toggles.push_back(toggle); 
 		}
         allowMultiple = false; 
@@ -80,7 +81,21 @@ public:
             t->setDrawPadding(false);             
         }           
 	}
-    
+
+
+    virtual void setFont(ofTrueTypeFont * _font)
+	{
+		for(int i = 0; i < toggles.size(); i++)
+		{
+			ofxUILabelToggle *t = toggles[i];
+			ofxUILabel * label = t->getLabel();
+			label->setFont(_font);
+
+          // ((ofxUILabel*)t->getLabel())->setFont(_font);
+        }
+	}
+
+
     virtual void setDrawPaddingOutline(bool _draw_padded_rect_outline)
 	{
 		draw_padded_rect_outline = _draw_padded_rect_outline; 
@@ -206,6 +221,7 @@ protected:    //inherited: ofxUIRectangle *rect; ofxUIWidget *parent;
 	int orientation; 	
 	vector<ofxUILabelToggle *> toggles;
     bool allowMultiple;
+    int size;
 }; 
 
 #endif
