@@ -163,21 +163,40 @@ public:
             {
                 float dyTop = rect->y - sRect->y; 
                 float dyBot = (sRect->y+sRect->getHeight()) - (rect->y+rect->getHeight()); 
-                if(fabs(dyTop) < stickyDistance)
+
+/*                if(fabs(dyTop) < stickyDistance)
                 {
-                    nearTop = true;                     
+                    nearTop = true;
                 }            
                 else if(fabs(dyBot) < stickyDistance)
                 {
-                    nearBot = true; 
+                    nearBot = true;
                 }
                 else
                 {
                     nearTop = false; 
                     nearBot = false;                     
                 }
+
+*/
+                if(dyTop > 0){
+                   	rect->y = 0;
+					acc.y = 0;
+					vel.y = 0;
+                }
+                else if(dyBot > 0 && sRect->getHeight() < rect->getHeight()){
+					rect->y = sRect->getHeight() - rect->getHeight();
+					acc.y = 0;
+					vel.y = 0;
+				}
+                else if(dyTop < 0 && sRect->getHeight() > rect->getHeight()){
+                 	rect->y = 0;
+					acc.y = 0;
+					vel.y = 0;
+                }
                    
-                if(dyTop > 0)
+     /*
+        		 if(dyTop > 0)
                 {
                     acc.y += (-dyTop)/10.0;
                     acc.y -=vel.y*(1.0-damping); 
@@ -197,14 +216,15 @@ public:
                     acc.y += (dyBot)/10.0;
                     acc.y -=vel.y*(1.0-damping); 	
                 }
+          */
             }
             
-            acc.limit(10);
+            acc.limit(15);
             vel +=acc; 
-            vel.limit(50);
+            vel.limit(70);
             if(scrollX) rect->x +=vel.x; 
-            if(scrollY) rect->y +=vel.y;             
-            
+            if(scrollY) rect->y +=vel.y;
+
             vel *=damping;    
             acc = 0; 
         }
