@@ -133,7 +133,7 @@ enum ofxWidgetColorType
 #elif TARGET_QNX
 #define OFX_UI_FONT_NAME "app/native/assets/GUI/NewMedia Fett.ttf"
 #else
-#define OFX_UI_FONT_NAME "GUI/NewMedia Fett.ttf"
+#define OFX_UI_FONT_NAME "assets/GUI/NewMedia Fett.ttf"
 #endif
 
 #define OFX_UI_FONT_RESOLUTION 150
