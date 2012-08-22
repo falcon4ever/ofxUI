@@ -28,6 +28,8 @@
 #include "ofxUIWidget.h"
 #include <vector>
 #include <map>
+#include "ofxUIRadioImage.h"
+#include "ofxUIRadioLabel.h"
 
 class ofxUICanvas : public ofxUIWidget
 {    
@@ -1274,6 +1276,43 @@ public:
 			pushbackWidget(label); 			
             
             widgetsWithState.push_back(widget);                         
+		}		
+		else if(widget->getKind() == OFX_UI_WIDGET_RADIOIMAGE)
+		{
+			ofxUIRadioImage *radio = (ofxUIRadioImage *) widget;
+			ofxUILabel *label = (ofxUILabel *) radio->getLabel();			
+			setLabelFont(label); 
+			pushbackWidget(label); 				
+			
+			vector<ofxUIImageToggle *> toggles = radio->getToggles(); 
+			
+			for(int i = 0; i < toggles.size(); i++)
+			{
+				ofxUIImageToggle *t = toggles[i]; 
+				pushbackWidget(t); 
+				
+                widgetsWithState.push_back(t);                             
+			}
+		}
+		else if(widget->getKind() == OFX_UI_WIDGET_RADIOLABEL)
+		{
+			ofxUIRadioLabel *radio = (ofxUIRadioLabel *) widget;
+			ofxUILabel *label = (ofxUILabel *) radio->getLabel();			
+			setLabelFont(label); 
+			pushbackWidget(label); 				
+			
+			vector<ofxUILabelToggle *> toggles = radio->getToggles(); 
+			
+			for(int i = 0; i < toggles.size(); i++)
+			{
+				ofxUILabelToggle *t = toggles[i]; 
+				pushbackWidget(t); 
+				ofxUILabel *l2 = (ofxUILabel *) t->getLabel();
+				setLabelFont(l2); 	
+				pushbackWidget(l2);
+                
+                widgetsWithState.push_back(t);                             
+			}
 		}
 		else if(widget->getKind() == OFX_UI_WIDGET_RADIO)
 		{
@@ -1579,6 +1618,20 @@ public:
         return widget;
     }
     
+	ofxUIRadioImage* addRadioImage(string _name, vector<string> names, vector<string> pathURLs, int _orientation, float w, float h, float x = 0, float y = 0)
+    {
+        ofxUIRadioImage* widget = new ofxUIRadioImage(_name, names, pathURLs, _orientation, w, h, x, y);
+        addWidgetPosition(widget, widgetPosition, widgetAlign);
+        return widget;
+    }
+
+	ofxUIRadioLabel* addRadioLabel(string _name, vector<string> names, int _size, int _orientation, float w, float h, float x = 0, float y = 0)
+    {
+        ofxUIRadioLabel* widget = new ofxUIRadioLabel(_name, names, _size, _orientation, w, h, x, y);
+        addWidgetPosition(widget, widgetPosition, widgetAlign);
+        return widget;
+    }
+	
     ofxUIRadio* addRadio(string _name, vector<string> names, int _orientation, float w, float h, float x = 0, float y = 0)
     {
         ofxUIRadio* widget = new ofxUIRadio(_name, names, _orientation, w, h, x, y);
