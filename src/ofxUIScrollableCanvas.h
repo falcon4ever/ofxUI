@@ -60,9 +60,9 @@ public:
         kind = OFX_UI_WIDGET_SCROLLABLECANVAS;
         sRect = new ofxUIRectangle(rect->x, rect->y, rect->getWidth(), rect->getHeight());
         isScrolling = false; 
-        vel.set(0);
-        pos.set(0);
-        ppos.set(0);
+		vel.set(0); 
+        pos.set(0); 
+		ppos.set(0); 
         acc.set(0); 
         damping = .90; 
         scrollX = false; 
@@ -303,7 +303,7 @@ public:
                 {
                     isScrolling = true; 
                     ppos = ofPoint(x,y);
-                    vel.set(0); 
+                    vel.set(0);
                 }
                 else
                 {
@@ -339,7 +339,7 @@ public:
         }		
         
         isScrolling = false; 
-        vel.set(0);             
+        vel.set(0,0);           
     }
     
     void mouseReleased(int x, int y, int button) 
