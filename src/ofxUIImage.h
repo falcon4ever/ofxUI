@@ -94,7 +94,7 @@ public:
 			if(image != NULL)
 			{			   
 				ofFill(); 
-				ofSetColor(255); 		
+				ofSetColor(color_fill);
 				image->draw(rect->getX(), rect->getY(), rect->width, rect->height); 
 			}
         }

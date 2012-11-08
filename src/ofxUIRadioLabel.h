@@ -189,6 +189,20 @@ public:
 			}			
 			else 
 			{
+				t->getRect()->x = xt;
+				t->getRect()->y = yt;
+				xt+=t->getPaddingRect()->width;
+
+				if(i == 0){
+					tHeight = label->getPaddingRect()->height+t->getPaddingRect()->height;
+				}
+				else if(i == 5){
+					xt = 0;
+					yt += t->getPaddingRect()->height;
+					tHeight *= 2;
+					tHeight -= 13;
+				}
+				/*
 				xt+=t->getPaddingRect()->width; 				
 				t->getRect()->y = yt; 			
 				if(t->getPaddingRect()->width > tWidth)
@@ -197,6 +211,7 @@ public:
 				}
 				tHeight+=t->getPaddingRect()->height; 				
 				yt +=t->getPaddingRect()->getHeight(); 
+				*/
 			}			
 		}
         

@@ -36,8 +36,8 @@
 #define OFX_UI_STATE_DOWN 2
 #define OFX_UI_STATE_SUSTAINED 3
 
-#define OFX_UI_GLOBAL_PADDING 4
-#define OFX_UI_GLOBAL_WIDGET_SPACING 8
+#define OFX_UI_GLOBAL_PADDING (4 * 2)
+#define OFX_UI_GLOBAL_WIDGET_SPACING (8 * 2)
 
 #define OFX_UI_COLOR_BACK ofColor(0, 25)                                //the rect's back color
 #define OFX_UI_COLOR_OUTLINE ofColor(255, 255, 255, 100)                //the rect's outline color 
@@ -202,13 +202,19 @@ enum ofxUIThemeType
 //#ifdef TARGET_ANDROID
 //#define OFX_UI_FONT_NAME "newmediafett.ttf"
 //#else
-#define OFX_UI_FONT_NAME "GUI/NewMedia Fett.ttf"
+#define OFX_UI_FONT_NAME "app/native/assets/GUI/NewMedia Fett.ttf"
 //#endif
 
 #define OFX_UI_FONT_RESOLUTION 150
-#define OFX_UI_FONT_LARGE_SIZE 10
-#define OFX_UI_FONT_MEDIUM_SIZE 8
-#define OFX_UI_FONT_SMALL_SIZE 6
+/*
+#define OFX_UI_FONT_LARGE_SIZE (10 + 4) * 2
+#define OFX_UI_FONT_MEDIUM_SIZE (8 + 4) * 2
+#define OFX_UI_FONT_SMALL_SIZE (6 + 4) * 2
+*/
+
+#define OFX_UI_FONT_LARGE_SIZE (10 * 2.5)
+#define OFX_UI_FONT_MEDIUM_SIZE (8 * 2.5)
+#define OFX_UI_FONT_SMALL_SIZE (6 * 2.5)
 
 #define OFX_UI_LABEL_DRAW_BACK false
 
