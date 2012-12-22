@@ -199,11 +199,12 @@ enum ofxUIThemeType
 
 
 
-//#ifdef TARGET_ANDROID
-//#define OFX_UI_FONT_NAME "newmediafett.ttf"
-//#else
+#ifdef TARGET_DESKTOP
+#define OFX_UI_FONT_NAME "assets/GUI/NewMedia Fett.ttf"
+#else
+// BB10 (QNX)
 #define OFX_UI_FONT_NAME "app/native/assets/GUI/NewMedia Fett.ttf"
-//#endif
+#endif
 
 #define OFX_UI_FONT_RESOLUTION 150
 /*
@@ -212,9 +213,15 @@ enum ofxUIThemeType
 #define OFX_UI_FONT_SMALL_SIZE (6 + 4) * 2
 */
 
+#ifdef TARGET_DESKTOP
+#define OFX_UI_FONT_LARGE_SIZE 10
+#define OFX_UI_FONT_MEDIUM_SIZE 8
+#define OFX_UI_FONT_SMALL_SIZE 6
+#else
 #define OFX_UI_FONT_LARGE_SIZE (10 * 2.5)
 #define OFX_UI_FONT_MEDIUM_SIZE (8 * 2.5)
 #define OFX_UI_FONT_SMALL_SIZE (6 * 2.5)
+#endif
 
 #define OFX_UI_LABEL_DRAW_BACK false
 
